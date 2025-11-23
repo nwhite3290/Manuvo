@@ -7,103 +7,78 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
+/**
+ * Tiles class
+ * - extends JPanel
+ * - Draws tiles on gameboard
+ */
 public class Tiles extends JPanel {
-	private int pos;
-	private int YHEIGHT = 200;
-	Random random = new Random();
-
-	// Version 4
+	/**
+	 * drawTiles(Graphics g, boolean[] tilesCheck, int[] tilesY, boolean play)
+	 * - draws the tiles on the gameboard
+	 * @param g graphics object passed into the function
+	 * @param tilesCheck checks the column for a tile
+	 * @param tilesY starting `y` position of the tile
+	 * @param play current state of the program
+	 */
 	public void drawTiles(Graphics g, boolean[] tilesCheck, int[] tilesY, boolean play) {
+		// render Graphics2D
 		Graphics2D g2 = (Graphics2D) g;
+		// set antialiasing ON
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		int w = 150, h = 200;
-		if (!play) {
-			g2.setColor(Color.BLUE.darker());
-			g2.fillRect(225, 300, w, h);
-			g2.setColor(Color.WHITE);
-			g2.setFont(new Font("SansSerif", Font.BOLD, 24));
-			g2.drawString("Press   1\n", 249, 361);
-			g2.drawString("to  START", 243, 415);
+        // set color of tiles
+        Color[] highlight = {(new Color(120, 255, 120)), (new Color(255, 120, 120)), (new Color(255, 255, 0)), (new Color(120, 120, 255))};
+        Color[] tileColor = {(new Color(32, 120, 32)), (new Color(120, 32, 32)), (new Color(120, 120, 32)), (new Color(32, 32, 120))};
+		// set height and width of tiles
+		int tileWidth = 150;
+		int tileHeight = 200;
+		// if gameplay is not in progress
+		if(!play) {
+            // tile rectangle
+            g2.setColor(tileColor[0]);
+            g2.fillRoundRect(1, 350, tileWidth - 2, tileHeight, 30, 30);
+            // highlight glow
+            g2.setColor(highlight[0]);
+            g2.fillRoundRect(1 + 11, 350 + 10, tileWidth - 22, tileHeight - 20, 30, 30);
+            // set color to dark gray
+			g2.setColor(Color.DARK_GRAY);
+            // set new font
+			g2.setFont(new Font("SansSerif", Font.BOLD, 40));
+            // draw the word "Start" in the middle of the tile
+			g2.drawString("START", 15, 450);
 			return;
 		}
-		g2.setColor(Color.BLUE.darker());
-		for (int i = 0; i < 4; i++) {
-			if (tilesCheck[i]) {
-				g2.fillRect(i * w, tilesY[i], w, h);
-			}
-		}
+        // if there is room in the [ith] column
+		for(int i = 0; i < 4; i++) {
+            if (tilesCheck[i]) {
+                int x = i * tileWidth;
+                int y = tilesY[i];
+                // tile rectangle
+                g2.setColor(tileColor[i]);
+                g2.fillRoundRect(x + 1, y, tileWidth - 2, tileHeight, 30, 30);
+                // highlight glow
+                g2.setColor(highlight[i]);
+                g2.fillRoundRect(x + 11, y + 10, tileWidth - 22, tileHeight - 20, 30, 30);
+            }
+        }
+
+
+
 	}
 
-
-
-/*
-// Version 3
-public void drawTiles(Graphics g, boolean[] tilesCheck, int[] tilesY, boolean play) {
-	Graphics2D g2 = (Graphics2D) g;
-	g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-	int tileWidth = 150;
-	int tileHeight = 200;
-	Color tileColor = new Color(10,10,10,220);
-	Color tileHighlight = new Color(255,255,255,45);
-	if (!play) {
-		g2.setColor(tileColor);
-		g2.fillRoundRect(225, 300, 150, 200, 30, 30);
-		g2.setColor(Color.white);
-		g2.setFont(new Font("SansSerif", Font.BOLD, 40));
-		g2.drawString("START", 245, 415);
-		return;
-	}
-	for(int i = 0; i < 4; i++) {
-		if(tilesCheck[i]) {
-			int x = i * tileWidth;
-			int y = tilesY[i];
-			// tile rectangle g2.setColor(tileColor);
-			g2.fillRoundRect(x, y, tileWidth, tileHeight, 30, 30);
-			// highlight glow g2.setColor(tileHighlight);
-			g2.fillRoundRect(x+10, y+10, tileWidth-20, tileHeight-20, 30, 30);
-		}
-	}
-}
-*/
-
-	/*
-	// Version 2
-	public void drawTiles (Graphics g, boolean[] tilesCheck, int[] tilesY, boolean play) {
-		g.setColor(Color.BLACK);
-		if(!play) {
-			g.fillRect(150,350,150,200);
-			g.setColor(Color.white);
-			g.setFont(new Font(Font.DIALOG_INPUT,Font.BOLD,30));
-			g.drawString("Start",180,460);
-		}
-		if(tilesCheck[0]) {
-			g.fillRect(0,tilesY[0],150,YHEIGHT); // YHEIGHT = 200
-		}
-		if(tilesCheck[1]) {
-			g.fillRect(150,tilesY[1],150,YHEIGHT);
-		}
-		if(tilesCheck[2]) {
-			g.fillRect(300,tilesY[2],150,YHEIGHT);
-		}
-		if(tilesCheck[3]) {
-			g.fillRect(450,tilesY[3],150,YHEIGHT);
-		}
-	}
-
- */
 	public void drawFoul(Graphics g, int foulPlace, int foulY) {
 		g.setColor(Color.red);
-		if (foulPlace == 0) {
-			g.fillRect(0, foulY, 150, YHEIGHT);
+		if(foulPlace == 0) {
+			g.fillRect(0,foulY,150,200);
 		}
-		if (foulPlace == 1) {
-			g.fillRect(150, foulY, 150, YHEIGHT);
+		if(foulPlace == 1) {
+			g.fillRect(150,foulY,150,200);
 		}
-		if (foulPlace == 2) {
-			g.fillRect(300, foulY, 150, YHEIGHT);
+		if(foulPlace == 2) {
+			g.fillRect(300,foulY,150,200);
 		}
-		if (foulPlace == 3) {
-			g.fillRect(450, foulY, 150, YHEIGHT);
+		if(foulPlace == 3) {
+			g.fillRect(450,foulY,150,200);
 		}
 	}
 }

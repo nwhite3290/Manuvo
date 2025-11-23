@@ -1,20 +1,41 @@
-# Manuvo
-It is a piano based game, where tiles come down and when you tap on them as music is streamed!
-# Gameboard
 
-<img src="./Gameplay.png" alt="Gameboard" style="zoom:33%;" />
+# README.md
+
+```
+------------------------------------------------------------------------
+PROJECT TITLE: Manuvo
+PURPOSE OF PROJECT: Regenerative Therapy
+VERSION: 2.5.1.1
+DATE: 11/22/2025
+CREATED: Java JRE21SE, IntellIJ
+AUTHOR: Nathan White, Jasmine van Zoest, Riley Glance, Mikel Cruz
+USER INSTRUCTIONS: Import all files as a project into the IDE.
+------------------------------------------------------------------------
+```
+
+## Manuvo
+```
+A tile based rhythm game, where come down and you tap on them as the music is streamed!
+```
+
+## Gameboard
+
+<img src="/home/nathan/Pictures/gameplay.png" alt="Gameboard" style="zoom:33%;" />
 
 
 
-# Introduction to game
+## Introduction to game
+```
 The tiles come from top to bottom in four columns with the music playing in the background.
 Tap the tiles as soon as they appear in the hit window at the bottom of the screen.
 If you miss one tile the game is over!
 There are currently five preset difficulty levels.
 Each difficulty has a different song association.
-The difficulty determines the speed of the tiles. 
+The difficulty determines the speed of the tiles.
+```
 
-# How to play
+## How to play
+```
 Use the UP and DOWN arrows to highlight a difficulty level/song.
 Select the song with the ENTER key.
 Tiles are in four columns labled `1,2,3,4`, these represents keys to press to hit the tile.
@@ -22,11 +43,86 @@ Press '1' to start the game.
 A perfect hit is worth +3 points.
 Early or late hit will give either +2 or +1 points.
 Game ends when a tile is missed or the wrong number is pressed.
-Press the ENTER key to return to the Main Screen. 
+Press the ENTER key to return to the Main Screen.
+```
 
-# Additional Information
+## Additional Information
+```
 Score is displayed in the top of the screen & buttons are displayed at the bottom of the screen.
+```
+## Developer Information
 
-# Developer Information
-Progamming language: `Java'
-Version: 'JDK-21'
+```
+>Progamming language: `Java'
+>Version: 'JDK-21'
+```
+
+## Included Classes
+
+[Audio]
+- Handles the audio files
+	- starts and stops the music
+
+[Button]
+- creates buttons used in the program
+
+
+[DifficultySelect]
+
+
+[GameText]
+- creates the text used in the game
+
+[Main]
+- create new App
+- create new MainScreen
+
+[MainScreen]
+- creates new MainScreen object
+	- User Interface. uses all other classes:
+- Uses all classes:
+	- create and set up menu, songs, game board, graphics, run menus and game
+	- sets initial values and handles input and output
+- extends JPanel
+	- uses KeyListener for keyboard actions
+	- uses ActionListener for button presses vs piece locations
+
+[ScoreCalculate]
+
+
+[Song]
+
+
+[Tiles]
+- draws the tiles on the gameboard
+
+
+## Included Folders
+
+[Backgrounds]
+
+[Buttons]
+
+[Images]
+
+[Keys]
+
+[Music]
+
+[SongNoteCharts]
+
+[src]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
