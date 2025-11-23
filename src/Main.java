@@ -12,8 +12,7 @@ public class Main {
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setTitle("Manuvo");
 		frame.setSize(boardWidth,boardHeight);
-		//frame.setBounds(400,10,800,800);
-        frame.setLocationRelativeTo(null);
+    frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		MainScreen mainScreen = new MainScreen();
 		frame.add(mainScreen);
@@ -23,10 +22,5 @@ public class Main {
 
 		frame.setVisible(true);
 
-
-
-
-
 	}
 }
-
